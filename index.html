@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse My Bookstore's curated catalog of fiction, business, science, fantasy, mystery, history, technology, kids, and romance books.">
+  <title>My Bookstore</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <section class="hero home-hero">
+    <div class="hero-content">
+      <p class="eyebrow">100 curated books across 10 sections</p>
+      <h1>Discover Your Next Favorite Book</h1>
+      <p class="hero-copy">Browse polished shelves built for fast scanning, smooth movement, and a premium bookstore feel.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="shop.html">Shop Now</a>
+        <a class="btn-secondary" href="#featuredBooks">See Featured</a>
+      </div>
+    </div>
+    <aside class="hero-panel glass" aria-label="Bookstore highlights">
+      <span>Today in store</span>
+      <strong>10 sections</strong>
+      <p>Fiction, business, science, fantasy, mystery, history, technology, kids, romance, and more.</p>
+    </aside>
+  </section>
+
+  <section class="featured">
+    <p class="eyebrow">Fresh picks</p>
+    <h2>Featured Books</h2>
+    <div class="book-grid" id="featuredBooks"></div>
+  </section>
+
+  <section class="categories">
+    <p class="eyebrow">Browse by mood</p>
+    <h2>Categories</h2>
+    <div class="category-grid" id="categoryGrid"></div>
+  </section>
+
+  <section class="testimonials glass">
+    <div>
+      <p class="eyebrow">Reader notes</p>
+      <h2>What Readers Say</h2>
+    </div>
+    <div class="quote-grid">
+      <blockquote>
+        <p>"I found a birthday gift in minutes because the sections are clear and the covers make browsing feel natural."</p>
+        <cite>Leila M., fiction reader</cite>
+      </blockquote>
+      <blockquote>
+        <p>"The technology and business shelves feel focused. I can compare practical books without sorting through noise."</p>
+        <cite>Omar A., product manager</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <p class="eyebrow">Stay close</p>
+    <h2>Join Our Newsletter</h2>
+    <p>Get a short monthly note with new shelves, popular picks, and reading ideas.</p>
+    <form>
+      <input type="email" placeholder="Enter your email">
+      <button class="btn-primary">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="site-links">
+    <a href="shipping.html">Shipping & Returns</a>
+    <a href="account.html">Reader Account</a>
+    <a href="faq.html">Help Center</a>
+    <a href="style-guide.html">Design System</a>
+  </section>
+
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+  <script defer src="script.js?v=section-pages"></script>
+</body>
+</html>

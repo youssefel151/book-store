@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find answers about My Bookstore shipping, returns, accounts, checkout, and book browsing.">
+  <title>FAQ - My Bookstore</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <main class="page-shell faq">
+    <div class="page-intro">
+      <p class="eyebrow">Help center</p>
+      <h1>Frequently Asked Questions</h1>
+      <p>Quick answers for orders, recommendations, shipping, returns, and account support.</p>
+    </div>
+
+    <div class="accordion-list">
+      <details class="glass" open>
+        <summary>How long does delivery take?</summary>
+        <p>Standard delivery usually takes 3 to 6 business days. Express delivery is available at checkout.</p>
+      </details>
+      <details class="glass">
+        <summary>Can I return a book?</summary>
+        <p>Yes. You can return unread books in original condition within 14 days of delivery.</p>
+      </details>
+      <details class="glass">
+        <summary>Do you offer recommendations?</summary>
+        <p>Yes. Use the contact page or browse sections by mood and genre from the shop page.</p>
+      </details>
+      <details class="glass">
+        <summary>Can I track my order?</summary>
+        <p>Tracking details are emailed once the order is packed and handed to the carrier.</p>
+      </details>
+      <details class="glass">
+        <summary>Are digital books available?</summary>
+        <p>This demo catalog focuses on physical books, but the layout is ready for digital formats too.</p>
+      </details>
+    </div>
+  </main>
+
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop 100 curated books by category, price, and rating with fast search, filters, cover previews, and cart actions.">
+  <title>Shop - My Bookstore</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <section class="shop">
+    <div class="shop-hero">
+      <p class="eyebrow">Explore the catalog</p>
+      <h1>Shop 100 Books</h1>
+      <p>Browse real shelves with cover imagery, prices, reader ratings, category filters, and one-click cart actions.</p>
+      <div class="shop-stats" aria-label="Catalog summary">
+        <span><strong>10</strong> sections</span>
+        <span><strong>100</strong> books</span>
+        <span><strong>4.7</strong> average rating</span>
+      </div>
+    </div>
+
+    <div class="shop-feature-strip" aria-label="Featured categories">
+      <article style="--tile-accent: #7c3aed">
+        <span>Fiction</span>
+        <p>Literary favorites, modern bestsellers, and clever conversation starters.</p>
+      </article>
+      <article style="--tile-accent: #9333ea">
+        <span>Fantasy</span>
+        <p>Epic worlds, magic systems, and page-turning sagas.</p>
+      </article>
+      <article style="--tile-accent: #2563eb">
+        <span>Technology</span>
+        <p>Practical engineering, product thinking, and software craft.</p>
+      </article>
+    </div>
+
+    <div id="shopApp"></div>
+
+    <section class="shop-reviews glass" aria-label="Reader reviews">
+      <div>
+        <p class="eyebrow">Reader reviews</p>
+        <h2>Why shoppers come back</h2>
+      </div>
+      <div class="quote-grid">
+        <blockquote>
+          <p>"The category filters made it easy to compare gifts across fiction, kids, and fantasy in one visit."</p>
+          <cite>Amal R., weekend reader</cite>
+        </blockquote>
+        <blockquote>
+          <p>"The book cards are quick to scan, and the ratings helped me choose without opening ten tabs."</p>
+          <cite>Youssef B., software student</cite>
+        </blockquote>
+        <blockquote>
+          <p>"I liked seeing prices, authors, and covers together. It feels like a proper bookstore shelf."</p>
+          <cite>Nora K., book club host</cite>
+        </blockquote>
+      </div>
+    </section>
+  </section>
+
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+  <script defer src="script.js?v=section-pages"></script>
+</body>
+</html>

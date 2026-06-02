@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about My Bookstore's curated shelves, reader-first browsing experience, and thoughtful book selection.">
+  <title>About - My Bookstore</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <section class="about editorial-section">
+    <div class="page-intro">
+      <p class="eyebrow">Our Story</p>
+      <h1>Built for Readers Who Like to Wander</h1>
+      <p>My Bookstore is a small online bookshop built around the feeling of browsing a favorite shelf: clear categories, thoughtful picks, visible covers, and enough detail to choose confidently.</p>
+    </div>
+    <div class="mission-band glass">
+      <p class="eyebrow">Mission & Vision</p>
+      <h2>Make online book shopping feel calmer, warmer, and more useful than a crowded marketplace.</h2>
+      <p>We organize the catalog into human-sized sections so readers can move from mood to title without getting lost. Every shelf balances trusted favorites with books that invite a little curiosity.</p>
+    </div>
+    <div class="story-split">
+      <div class="story-panel glass">
+        <p class="eyebrow">How we curate</p>
+        <h2>Books are grouped by reader intent, not just inventory.</h2>
+        <p>Fiction and fantasy highlight immersive stories. Business, technology, and self-development lean practical. Science and history are selected for clarity, depth, and staying power. Kids and romance keep discovery joyful and easy to scan.</p>
+      </div>
+      <div class="values-list glass">
+        <h2>What matters here</h2>
+        <ul class="check-list">
+          <li>Readable pages that work in light and dark mode.</li>
+          <li>Cover-forward browsing for faster recognition.</li>
+          <li>Transparent prices, ratings, and authors on every listing.</li>
+          <li>Simple cart and checkout paths with no clutter.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-grid">
+      <article class="info-card">
+        <h3>Curated Catalog</h3>
+        <p>Ten sections and one hundred books give the store enough range for an MVP while staying easy to browse.</p>
+      </article>
+      <article class="info-card">
+        <h3>Fast Delivery</h3>
+        <p>Orders are designed around a simple cart flow, clear totals, and direct checkout actions.</p>
+      </article>
+      <article class="info-card">
+        <h3>Reader Support</h3>
+        <p>FAQ, contact, account, and category pages give readers helpful next steps throughout the site.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hobbit by J. R. R. Tolkien - My Bookstore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <script defer src="../../script.js?v=product-pages"></script>
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="../../index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../shop.html">Shop</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../faq.html">FAQ</a></li>
+        <li><a href="../../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="../../cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="../../checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <main class="product-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../shop.html">Shop</a>
+      <span>/</span>
+      <a href="../../section-kids.html">Kids</a>
+      <span>/</span>
+      <strong>The Hobbit</strong>
+    </nav>
+
+    <section class="product product-showcase product-detail-hero">
+      <div class="product-media" style="--cover-accent: #e11d48">
+        <div class="book-cover product-cover cover-fallback" aria-hidden="true"><span>TH</span></div>
+        <img class="book-cover-image product-cover-img" src="https://covers.openlibrary.org/b/title/The%20Hobbit-L.jpg?default=false" alt="The Hobbit cover" loading="lazy" onerror="this.remove();">
+      </div>
+      <div class="details product-detail-card">
+        <p class="eyebrow">Kids</p>
+        <h1>The Hobbit</h1>
+        <h3>by J. R. R. Tolkien</h3>
+        <div class="product-rating" aria-label="Rated 4.8 out of 5">
+          <span aria-hidden="true">?????</span>
+          <strong>4.8 / 5.0</strong>
+        </div>
+        <p class="price">$12.50</p>
+        <p class="description">The Hobbit by J. R. R. Tolkien belongs on the Kids shelf because it gives readers a clear reason to keep turning pages. A reader-friendly children&#x27;s book chosen for imagination, warmth, and repeat reading appeal. This edition is presented with quick shopping details, a visible cover, rating, price, and cart action so customers can decide with confidence.</p>
+        <div class="product-meta product-info-grid">
+          <span><strong>Category</strong>Kids</span>
+          <span><strong>Author</strong>J. R. R. Tolkien</span>
+          <span><strong>Format</strong>Paperback</span>
+          <span><strong>Availability</strong>In stock</span>
+          <span><strong>SKU</strong>KIDS-010</span>
+          <span><strong>Shelf Size</strong>10 books</span>
+        </div>
+        <div class="product-actions">
+          <button class="btn-primary add-to-cart" type="button" data-title="The Hobbit" data-author="J. R. R. Tolkien" data-price="12.50" data-section="Kids">Add to Cart</button>
+          <a class="btn-secondary" href="../../shop.html#section-kids">Back to Kids</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-extra-grid">
+      <article class="product-panel glass">
+        <p class="eyebrow">Description</p>
+        <h2>About this book</h2>
+        <p>The Hobbit by J. R. R. Tolkien belongs on the Kids shelf because it gives readers a clear reason to keep turning pages. A reader-friendly children&#x27;s book chosen for imagination, warmth, and repeat reading appeal. This edition is presented with quick shopping details, a visible cover, rating, price, and cart action so customers can decide with confidence.</p>
+      </article>
+      <article class="product-panel glass">
+        <p class="eyebrow">Why readers pick it</p>
+        <h2>Store notes</h2>
+        <ul class="check-list">
+          <li>Clear title, author, price, category, and rating at a glance.</li>
+          <li>Fits the Kids shelf and links back to related books.</li>
+          <li>Ready for cart checkout with the shared site cart.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="reviews glass product-reviews">
+      <p class="eyebrow">Reader Reviews</p>
+      <h2>What Readers Say</h2>
+      <div class="quote-grid">
+        <blockquote>
+          <p>"The Hobbit is easy to recommend. The listing gave me the details I needed before adding it to my cart."</p>
+          <cite>Nora, verified reader</cite>
+        </blockquote>
+        <blockquote>
+          <p>"A strong kids shelf pick from J. R. R. Tolkien. I liked seeing the rating, price, and category together."</p>
+          <cite>Sara, bookstore customer</cite>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+</body>
+</html>

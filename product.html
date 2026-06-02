@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View book details, price, rating, and cart actions on My Bookstore.">
+  <title>Product - My Bookstore</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <section class="product product-showcase">
+    <div class="book-cover product-cover" aria-hidden="true"><span>BT</span></div>
+    <div class="details">
+      <p class="eyebrow">Featured Book</p>
+      <h1>Book Title</h1>
+      <h3>by Author Name</h3>
+      <p class="price">$24.99</p>
+      <p class="description">This detailed description highlights the story, themes, and why readers love it.</p>
+      <a class="btn-primary add-to-cart" href="cart.html" data-title="Book Title" data-author="Author Name" data-price="24.99" data-section="Featured">Add to Cart</a>
+    </div>
+  </section>
+
+  <section class="reviews glass">
+    <p class="eyebrow">Reader Reviews</p>
+    <h2>Reviews</h2>
+    <div class="quote-grid">
+      <blockquote>"Amazing read!" - Jane</blockquote>
+      <blockquote>"Highly recommend." - John</blockquote>
+    </div>
+  </section>
+
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+</body>
+</html>

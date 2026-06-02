@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete your My Bookstore order with a clear checkout summary and secure order form.">
+  <title>Checkout - My Bookstore</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <main class="checkout page-shell">
+    <div class="page-intro">
+      <p class="eyebrow">Secure order</p>
+      <h1>Checkout</h1>
+      <p>Finish your order with delivery details, payment information, and a clean order summary.</p>
+    </div>
+
+    <div class="checkout-layout">
+      <form class="checkout-form glass">
+        <fieldset>
+          <legend>Contact</legend>
+          <label>Email<input type="email" placeholder="reader@example.com" required></label>
+          <label>Phone<input type="tel" placeholder="+1 555 0100"></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Shipping</legend>
+          <label>Full Name<input type="text" placeholder="Your name" required></label>
+          <label>Address<input type="text" placeholder="Street address" required></label>
+          <div class="form-row">
+            <label>City<input type="text" placeholder="City" required></label>
+            <label>Postal Code<input type="text" placeholder="Code" required></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Payment</legend>
+          <label>Card Number<input type="text" placeholder="4242 4242 4242 4242" required></label>
+          <div class="form-row">
+            <label>Expiry<input type="text" placeholder="MM/YY" required></label>
+            <label>CVC<input type="text" placeholder="123" required></label>
+          </div>
+        </fieldset>
+
+        <button class="btn-primary" type="submit">Place Order</button>
+      </form>
+
+      <aside class="order-summary glass">
+        <h2>Order Summary</h2>
+        <div id="checkoutSummary"></div>
+        <div class="summary-total" id="checkoutTotal"><span>Total</span><strong>$0.00</strong></div>
+        <p>Free returns within 14 days. Tracking is sent after dispatch.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+</body>
+</html>

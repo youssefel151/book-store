@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore My Bookstore's visual design system, components, colors, and interface patterns.">
+  <title>Design System - My Bookstore</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <main class="page-shell design-system">
+    <div class="page-intro">
+      <p class="eyebrow">Design System</p>
+      <h1>Bookstore Interface Kit</h1>
+      <p>A compact reference for the redesigned colors, cards, buttons, forms, and book components used across the site.</p>
+    </div>
+
+    <section class="design-section glass">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Palette</p>
+          <h2>Core Colors</h2>
+        </div>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch" style="--swatch: var(--accent)"><span>Accent</span></div>
+        <div class="swatch" style="--swatch: var(--teal)"><span>Teal</span></div>
+        <div class="swatch" style="--swatch: var(--rose)"><span>Rose</span></div>
+        <div class="swatch" style="--swatch: var(--gold)"><span>Gold</span></div>
+      </div>
+    </section>
+
+    <section class="design-section glass">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Components</p>
+          <h2>Buttons & Inputs</h2>
+        </div>
+      </div>
+      <div class="component-row">
+        <a class="btn-primary" href="shop.html">Primary Action</a>
+        <a class="btn-secondary" href="about.html">Secondary Action</a>
+        <input class="search-bar" type="search" placeholder="Search preview">
+      </div>
+    </section>
+
+    <section class="design-section glass">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Book Card</p>
+          <h2>Catalog Preview</h2>
+        </div>
+      </div>
+      <div class="book-grid design-preview-grid">
+        <article class="book-card" style="--cover-accent: #7c3aed; --cover-shift: 18deg">
+          <div class="book-cover" aria-hidden="true"><span>MB</span></div>
+          <div class="book-info">
+            <p class="book-section">Fiction</p>
+            <h3>Midnight Bookmark</h3>
+            <p class="book-author">A. Reader</p>
+            <div class="book-meta">
+              <span>$18.99</span>
+              <span>4.8 stars</span>
+            </div>
+            <button class="btn-secondary add-to-cart" type="button" data-title="Midnight Bookmark" data-author="A. Reader" data-price="18.99" data-section="Fiction">Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+  <script src="script.js?v=design-system"></script>
+</body>
+</html>

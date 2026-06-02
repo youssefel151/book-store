@@ -1,0 +1,42 @@
+@font-body: "Inter", system-ui, sans-serif;
+@font-display: "Poppins", system-ui, sans-serif;
+
+@radius-sm: 6px;
+@radius-md: 8px;
+@radius-lg: 14px;
+
+@accent: #f97316;
+@teal: #0f766e;
+@rose: #be123c;
+@gold: #d9a441;
+@ink: #18212f;
+@paper: #fffdf7;
+
+.focus-ring() {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent), transparent 82%);
+}
+
+.bookstore-button() {
+  align-items: center;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 800;
+  justify-content: center;
+  min-height: 44px;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.surface-panel() {
+  background: var(--surface-muted);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+/* LESS source notes:
+   style.css is the active browser stylesheet for this static site.
+   This file keeps the redesign tokens and component patterns easy to extend
+   if you later add a LESS build step. */

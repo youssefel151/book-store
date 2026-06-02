@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero to One by Peter Thiel - My Bookstore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <script defer src="../../script.js?v=product-pages"></script>
+</head>
+<body>
+  <header class="navbar glass">
+    <a class="logo" href="../../index.html" aria-label="Go to home page">My Bookstore</a>
+    <nav>
+      <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../shop.html">Shop</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../faq.html">FAQ</a></li>
+        <li><a href="../../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="cartToggle" type="button" aria-expanded="false" aria-controls="miniCartPanel" aria-label="Open cart">
+        <span aria-hidden="true">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button id="darkModeToggle" type="button" aria-pressed="false">Dark</button>
+    </div>
+    <div class="mini-cart" id="miniCartPanel" hidden>
+      <div class="mini-cart-head">
+        <strong>Your Cart</strong>
+        <a href="../../cart.html">View cart</a>
+      </div>
+      <div id="miniCartItems"></div>
+      <div class="mini-cart-total" id="miniCartTotal">Total: $0.00</div>
+      <a class="btn-primary" href="../../checkout.html">Checkout</a>
+    </div>
+  </header>
+
+  <main class="product-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../shop.html">Shop</a>
+      <span>/</span>
+      <a href="../../section-business.html">Business</a>
+      <span>/</span>
+      <strong>Zero to One</strong>
+    </nav>
+
+    <section class="product product-showcase product-detail-hero">
+      <div class="product-media" style="--cover-accent: #0891b2">
+        <div class="book-cover product-cover cover-fallback" aria-hidden="true"><span>ZT</span></div>
+        <img class="book-cover-image product-cover-img" src="https://covers.openlibrary.org/b/title/Zero%20to%20One-L.jpg?default=false" alt="Zero to One cover" loading="lazy" onerror="this.remove();">
+      </div>
+      <div class="details product-detail-card">
+        <p class="eyebrow">Business</p>
+        <h1>Zero to One</h1>
+        <h3>by Peter Thiel</h3>
+        <div class="product-rating" aria-label="Rated 4.5 out of 5">
+          <span aria-hidden="true">?????</span>
+          <strong>4.5 / 5.0</strong>
+        </div>
+        <p class="price">$15.99</p>
+        <p class="description">Zero to One by Peter Thiel belongs on the Business shelf because it gives readers a clear reason to keep turning pages. A practical nonfiction pick for building better habits, sharper strategy, and clearer decisions at work. This edition is presented with quick shopping details, a visible cover, rating, price, and cart action so customers can decide with confidence.</p>
+        <div class="product-meta product-info-grid">
+          <span><strong>Category</strong>Business</span>
+          <span><strong>Author</strong>Peter Thiel</span>
+          <span><strong>Format</strong>Paperback</span>
+          <span><strong>Availability</strong>In stock</span>
+          <span><strong>SKU</strong>BUSINESS-003</span>
+          <span><strong>Shelf Size</strong>10 books</span>
+        </div>
+        <div class="product-actions">
+          <button class="btn-primary add-to-cart" type="button" data-title="Zero to One" data-author="Peter Thiel" data-price="15.99" data-section="Business">Add to Cart</button>
+          <a class="btn-secondary" href="../../shop.html#section-business">Back to Business</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-extra-grid">
+      <article class="product-panel glass">
+        <p class="eyebrow">Description</p>
+        <h2>About this book</h2>
+        <p>Zero to One by Peter Thiel belongs on the Business shelf because it gives readers a clear reason to keep turning pages. A practical nonfiction pick for building better habits, sharper strategy, and clearer decisions at work. This edition is presented with quick shopping details, a visible cover, rating, price, and cart action so customers can decide with confidence.</p>
+      </article>
+      <article class="product-panel glass">
+        <p class="eyebrow">Why readers pick it</p>
+        <h2>Store notes</h2>
+        <ul class="check-list">
+          <li>Clear title, author, price, category, and rating at a glance.</li>
+          <li>Fits the Business shelf and links back to related books.</li>
+          <li>Ready for cart checkout with the shared site cart.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="reviews glass product-reviews">
+      <p class="eyebrow">Reader Reviews</p>
+      <h2>What Readers Say</h2>
+      <div class="quote-grid">
+        <blockquote>
+          <p>"Zero to One is easy to recommend. The listing gave me the details I needed before adding it to my cart."</p>
+          <cite>Mina, verified reader</cite>
+        </blockquote>
+        <blockquote>
+          <p>"A strong business shelf pick from Peter Thiel. I liked seeing the rating, price, and category together."</p>
+          <cite>Leila, bookstore customer</cite>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+  <footer class="footer glass">
+    <p>&copy; 2026 My Bookstore. All rights reserved.</p>
+  </footer>
+</body>
+</html>
