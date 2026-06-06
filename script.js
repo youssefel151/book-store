@@ -256,7 +256,8 @@ document.addEventListener("click", (event) => {
       title: cartButton.dataset.title,
       author: cartButton.dataset.author,
       price: cartButton.dataset.price,
-      section: cartButton.dataset.section
+      section: cartButton.dataset.section,
+      image: cartButton.dataset.image
     };
 
     if (item.title && item.author && item.price) {
@@ -322,15 +323,24 @@ const TAX_RATE = 0.1;
 const getCart = () => JSON.parse(readStore(CART_KEY, "[]"));
 const saveCart = (cart) => writeStore(CART_KEY, JSON.stringify(cart));
 const cartItemId = (title, author) => `${title}::${author}`.toLowerCase();
+const initialsFor = (title) => title
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((word) => word[0])
+  .join("");
+
+const miniCover = (title, image, className = "mini-cover") => `
+  <div class="${className}" aria-hidden="true">
+    <span>${initialsFor(title)}</span>
+    <img src="${coverFor(title, image)}" alt="" loading="lazy" onerror="this.remove();">
+  </div>
+`;
 
 const bookCard = (book, section, index) => {
   const [title, author, price, rating, image] = book;
-  const initials = title
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("");
+  const coverImage = coverFor(title, image);
+  const initials = initialsFor(title);
 
   return `
     <article class="book-card" data-title="${title.toLowerCase()}" data-author="${author}" data-price="${price}" data-rating="${rating}" data-section="${section.name}" style="--cover-accent: ${section.accent}; --cover-shift: ${index * 18}deg">
@@ -338,7 +348,7 @@ const bookCard = (book, section, index) => {
         <div class="book-cover cover-fallback" aria-hidden="true">
           <span>${initials}</span>
         </div>
-        <img class="book-cover-image" src="${coverFor(title, image)}" alt="${title} cover" loading="lazy" onerror="this.remove();">
+        <img class="book-cover-image" src="${coverImage}" alt="${title} cover" loading="lazy" onerror="this.remove();">
       </a>
       <div class="book-info">
         <p class="book-section">${section.name}</p>
@@ -348,19 +358,20 @@ const bookCard = (book, section, index) => {
           <span>${formatPrice(price)}</span>
           <span>${rating.toFixed(1)} stars</span>
         </div>
-        <button class="btn-secondary add-to-cart" type="button" data-title="${title}" data-author="${author}" data-price="${price}" data-section="${section.name}">Add to Cart</button>
+        <button class="btn-secondary add-to-cart" type="button" data-title="${title}" data-author="${author}" data-price="${price}" data-section="${section.name}" data-image="${coverImage}">Add to Cart</button>
       </div>
     </article>
   `;
 };
 
-const addToCart = ({ title, author, price, section }) => {
+const addToCart = ({ title, author, price, section, image }) => {
   const cart = getCart();
   const id = cartItemId(title, author);
   const existingItem = cart.find((item) => item.id === id);
 
   if (existingItem) {
     existingItem.quantity += 1;
+    existingItem.image = image || existingItem.image || coverFor(title);
   } else {
     cart.push({
       id,
@@ -368,6 +379,7 @@ const addToCart = ({ title, author, price, section }) => {
       author,
       section,
       price: Number(price),
+      image: image || coverFor(title),
       quantity: 1
     });
   }
@@ -446,7 +458,7 @@ const renderCart = () => {
 
   cartItems.innerHTML = cart.map((item) => `
     <article class="cart-item glass">
-      <div class="mini-cover" aria-hidden="true">${item.title.slice(0, 2).toUpperCase()}</div>
+      ${miniCover(item.title, item.image)}
       <div class="cart-item-copy">
         <p class="book-section">${item.section}</p>
         <h3>${item.title}</h3>
@@ -491,7 +503,7 @@ const renderCheckout = () => {
   checkoutSummary.innerHTML = `
     ${cart.map((item) => `
       <div class="summary-line">
-        <span>${item.title} <small>x${item.quantity}</small></span>
+        <span class="summary-book">${miniCover(item.title, item.image, "mini-cover summary-cover")}<span>${item.title} <small>x${item.quantity}</small></span></span>
         <strong>${formatPrice(item.price * item.quantity)}</strong>
       </div>
     `).join("")}
@@ -522,6 +534,7 @@ const renderMiniCart = (openPanel = false) => {
   } else {
     miniCartItems.innerHTML = cart.map((item) => `
       <div class="mini-cart-item">
+        ${miniCover(item.title, item.image, "mini-cover mini-cart-cover")}
         <div>
           <strong>${item.title}</strong>
           <span>${item.author}</span>
