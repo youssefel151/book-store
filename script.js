@@ -366,14 +366,18 @@ const coverAccentForElement = (element) => {
 };
 const fallbackCoverFromElement = (image) => {
   const card = image.closest(".book-card");
+  const savedBook = image.closest(".saved-book");
+  const productDetails = document.querySelector(".product-detail-card");
   const title = image.dataset.title ||
     card?.querySelector(".book-info h3 a, .book-info h3")?.textContent.trim() ||
+    savedBook?.querySelector("strong")?.textContent.trim() ||
     image.alt.replace(/\s*cover\s*$/i, "").trim() ||
-    document.querySelector(".product-detail-card h1")?.textContent.trim() ||
+    productDetails?.querySelector("h1")?.textContent.trim() ||
     "Book";
   const author = image.dataset.author ||
     card?.querySelector(".book-author")?.textContent.trim() ||
-    document.querySelector(".product-author")?.textContent.replace(/^by\s+/i, "").trim() ||
+    savedBook?.querySelector("p")?.textContent.trim() ||
+    productDetails?.querySelector("h3")?.textContent.replace(/^by\s+/i, "").trim() ||
     "";
 
   return coverFallbackFor(title, author, coverAccentForElement(image));
@@ -381,6 +385,9 @@ const fallbackCoverFromElement = (image) => {
 const setupCoverFallbacks = (root = document) => {
   root.querySelectorAll(".book-cover-image, .product-cover-img, .mini-cover img").forEach((image) => {
     image.dataset.fallbackCover ||= fallbackCoverFromElement(image);
+    if (image.classList.contains("product-cover-img") && image.src.includes("covers.openlibrary.org")) {
+      image.src = image.dataset.fallbackCover;
+    }
     image.onerror = () => {
       if (image.src === image.dataset.fallbackCover) return;
       image.onerror = null;
@@ -405,14 +412,14 @@ const initialsFor = (title) => title
 const miniCover = (title, image, className = "mini-cover", author = "") => `
   <div class="${className}" aria-hidden="true">
     <span>${initialsFor(title)}</span>
-    <img src="${coverFor(title, image)}" alt="" loading="lazy" data-title="${escapeHtml(title)}" data-author="${escapeHtml(author)}">
+    <img src="${image || coverFallbackFor(title, author)}" alt="" loading="lazy" data-title="${escapeHtml(title)}" data-author="${escapeHtml(author)}">
   </div>
 `;
 
 const bookCard = (book, section, index) => {
   const [title, author, price, rating, image] = book;
-  const coverImage = coverFor(title, image);
   const fallbackImage = coverFallbackFor(title, author, section.accent);
+  const coverImage = image || fallbackImage;
   const initials = initialsFor(title);
   const safeTitle = escapeHtml(title);
   const safeAuthor = escapeHtml(author);
