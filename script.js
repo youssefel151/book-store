@@ -316,6 +316,78 @@ const sectionId = (name) => `section-${slugify(name)}`;
 const sectionPage = (name) => `${sectionId(name)}.html`;
 const productPage = (sectionName, title) => `pdt/${slugify(sectionName)}/${slugify(title)}.html`;
 const coverFor = (title, image) => image || `https://covers.openlibrary.org/b/title/${encodeURIComponent(title)}-L.jpg?default=false`;
+const escapeHtml = (value) => String(value || "")
+  .replace(/&/g, "&amp;")
+  .replace(/"/g, "&quot;")
+  .replace(/'/g, "&#39;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;");
+const escapeSvgText = (value) => String(value || "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;");
+const coverFallbackFor = (title, author = "", accent = "#7c3aed") => {
+  const safeTitle = escapeSvgText(title);
+  const safeAuthor = escapeSvgText(author);
+  const safeInitials = escapeSvgText(initialsFor(title));
+  const safeAccent = /^#[0-9a-f]{3,6}$/i.test(accent) ? accent : "#7c3aed";
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" role="img" aria-label="${safeTitle} cover">
+      <defs>
+        <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="${safeAccent}"/>
+          <stop offset="1" stop-color="#111827"/>
+        </linearGradient>
+        <pattern id="lines" width="38" height="38" patternUnits="userSpaceOnUse" patternTransform="rotate(24)">
+          <path d="M0 0H38" stroke="rgba(255,255,255,.16)" stroke-width="4"/>
+        </pattern>
+      </defs>
+      <rect width="500" height="700" rx="18" fill="url(#bg)"/>
+      <rect width="500" height="700" fill="url(#lines)"/>
+      <rect x="34" y="40" width="8" height="620" rx="4" fill="rgba(255,255,255,.38)"/>
+      <circle cx="400" cy="118" r="82" fill="rgba(255,255,255,.14)"/>
+      <text x="70" y="125" fill="rgba(255,255,255,.8)" font-family="Arial, sans-serif" font-size="58" font-weight="800">${safeInitials}</text>
+      <text x="70" y="425" fill="#fff" font-family="Arial, sans-serif" font-size="44" font-weight="800">
+        ${safeTitle.split(" ").slice(0, 7).map((word, index) => `<tspan x="70" dy="${index === 0 ? 0 : 52}">${word}</tspan>`).join("")}
+      </text>
+      <text x="70" y="640" fill="rgba(255,255,255,.82)" font-family="Arial, sans-serif" font-size="27" font-weight="600">${safeAuthor}</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
+const coverAccentForElement = (element) => {
+  const source = element.closest("[style*='--cover-accent'], [style*='--section-accent']");
+  const style = source ? getComputedStyle(source) : null;
+
+  return style?.getPropertyValue("--cover-accent").trim() ||
+    style?.getPropertyValue("--section-accent").trim() ||
+    "#7c3aed";
+};
+const fallbackCoverFromElement = (image) => {
+  const card = image.closest(".book-card");
+  const title = image.dataset.title ||
+    card?.querySelector(".book-info h3 a, .book-info h3")?.textContent.trim() ||
+    image.alt.replace(/\s*cover\s*$/i, "").trim() ||
+    document.querySelector(".product-detail-card h1")?.textContent.trim() ||
+    "Book";
+  const author = image.dataset.author ||
+    card?.querySelector(".book-author")?.textContent.trim() ||
+    document.querySelector(".product-author")?.textContent.replace(/^by\s+/i, "").trim() ||
+    "";
+
+  return coverFallbackFor(title, author, coverAccentForElement(image));
+};
+const setupCoverFallbacks = (root = document) => {
+  root.querySelectorAll(".book-cover-image, .product-cover-img, .mini-cover img").forEach((image) => {
+    image.dataset.fallbackCover ||= fallbackCoverFromElement(image);
+    image.onerror = () => {
+      if (image.src === image.dataset.fallbackCover) return;
+      image.onerror = null;
+      image.src = image.dataset.fallbackCover;
+    };
+  });
+};
 const CART_KEY = "bookstore-cart";
 const SHIPPING = 4.99;
 const TAX_RATE = 0.1;
@@ -330,17 +402,21 @@ const initialsFor = (title) => title
   .map((word) => word[0])
   .join("");
 
-const miniCover = (title, image, className = "mini-cover") => `
+const miniCover = (title, image, className = "mini-cover", author = "") => `
   <div class="${className}" aria-hidden="true">
     <span>${initialsFor(title)}</span>
-    <img src="${coverFor(title, image)}" alt="" loading="lazy" onerror="this.remove();">
+    <img src="${coverFor(title, image)}" alt="" loading="lazy" data-title="${escapeHtml(title)}" data-author="${escapeHtml(author)}">
   </div>
 `;
 
 const bookCard = (book, section, index) => {
   const [title, author, price, rating, image] = book;
   const coverImage = coverFor(title, image);
+  const fallbackImage = coverFallbackFor(title, author, section.accent);
   const initials = initialsFor(title);
+  const safeTitle = escapeHtml(title);
+  const safeAuthor = escapeHtml(author);
+  const safeFallbackImage = escapeHtml(fallbackImage);
 
   return `
     <article class="book-card" data-title="${title.toLowerCase()}" data-author="${author}" data-price="${price}" data-rating="${rating}" data-section="${section.name}" style="--cover-accent: ${section.accent}; --cover-shift: ${index * 18}deg">
@@ -348,7 +424,7 @@ const bookCard = (book, section, index) => {
         <div class="book-cover cover-fallback" aria-hidden="true">
           <span>${initials}</span>
         </div>
-        <img class="book-cover-image" src="${coverImage}" alt="${title} cover" loading="lazy" onerror="this.remove();">
+        <img class="book-cover-image" src="${coverImage}" alt="${safeTitle} cover" loading="lazy" data-title="${safeTitle}" data-author="${safeAuthor}" data-fallback-cover="${safeFallbackImage}">
       </a>
       <div class="book-info">
         <p class="book-section">${section.name}</p>
@@ -458,7 +534,7 @@ const renderCart = () => {
 
   cartItems.innerHTML = cart.map((item) => `
     <article class="cart-item glass">
-      ${miniCover(item.title, item.image)}
+      ${miniCover(item.title, item.image, "mini-cover", item.author)}
       <div class="cart-item-copy">
         <p class="book-section">${item.section}</p>
         <h3>${item.title}</h3>
@@ -475,6 +551,7 @@ const renderCart = () => {
   cartTotal.textContent = `Total: ${formatPrice(cartSubtotal(cart))}`;
   checkoutLink?.classList.remove("is-disabled");
   checkoutLink?.removeAttribute("aria-disabled");
+  setupCoverFallbacks(cartItems);
 };
 
 const renderCheckout = () => {
@@ -503,7 +580,7 @@ const renderCheckout = () => {
   checkoutSummary.innerHTML = `
     ${cart.map((item) => `
       <div class="summary-line">
-        <span class="summary-book">${miniCover(item.title, item.image, "mini-cover summary-cover")}<span>${item.title} <small>x${item.quantity}</small></span></span>
+        <span class="summary-book">${miniCover(item.title, item.image, "mini-cover summary-cover", item.author)}<span>${item.title} <small>x${item.quantity}</small></span></span>
         <strong>${formatPrice(item.price * item.quantity)}</strong>
       </div>
     `).join("")}
@@ -511,6 +588,7 @@ const renderCheckout = () => {
     <div class="summary-line"><span>Tax</span><strong>${formatPrice(tax)}</strong></div>
   `;
   checkoutTotal.innerHTML = `<span>Total</span><strong>${formatPrice(total)}</strong>`;
+  setupCoverFallbacks(checkoutSummary);
 };
 
 const renderMiniCart = (openPanel = false) => {
@@ -534,7 +612,7 @@ const renderMiniCart = (openPanel = false) => {
   } else {
     miniCartItems.innerHTML = cart.map((item) => `
       <div class="mini-cart-item">
-        ${miniCover(item.title, item.image, "mini-cover mini-cart-cover")}
+        ${miniCover(item.title, item.image, "mini-cover mini-cart-cover", item.author)}
         <div>
           <strong>${item.title}</strong>
           <span>${item.author}</span>
@@ -554,6 +632,8 @@ const renderMiniCart = (openPanel = false) => {
     miniCart.hidden = false;
     cartToggle.setAttribute("aria-expanded", "true");
   }
+
+  setupCoverFallbacks(miniCartItems);
 };
 
 const setupMiniCart = () => {
@@ -630,6 +710,7 @@ const renderCatalog = () => {
       </div>
     </section>
   `).join("");
+  setupCoverFallbacks(catalog);
 
   if (filter) {
     filter.innerHTML = `<option value="all">All Sections</option>${catalogSections.map((section) => `<option value="${section.name}">${section.name}</option>`).join("")}`;
@@ -697,6 +778,7 @@ const renderHomeHighlights = () => {
   if (featured) {
     const picks = catalogSections.slice(0, 6).map((section, index) => bookCard(section.books[index], section, index));
     featured.innerHTML = picks.join("");
+    setupCoverFallbacks(featured);
   }
 
   if (categories) {
@@ -748,6 +830,7 @@ const renderSectionPage = () => {
       ${section.books.map((book, index) => bookCard(book, section, index)).join("")}
     </div>
   `;
+  setupCoverFallbacks(sectionRoot);
 };
 
 window.Bookstore = {
@@ -767,5 +850,6 @@ renderSectionPage();
 renderCart();
 renderCheckout();
 renderMiniCart();
+setupCoverFallbacks();
 setupMiniCart();
 setupRevealMotion();
